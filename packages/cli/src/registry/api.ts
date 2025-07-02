@@ -3,7 +3,7 @@ import path from 'path'
 import { logger } from '../utils/logger'
 import { Registry, RegistryItem } from './schema'
 
-const REGISTRY_URL = process.env.JOURNEY_UI_REGISTRY_URL || 'http://localhost:3001/r'
+const REGISTRY_URL = process.env.JOURNEY_UI_REGISTRY_URL || 'https://github.com/journey-ui/ui/tree/main/apps/www/public/r'
 
 export async function fetchRegistry(): Promise<Registry> {
   try {
