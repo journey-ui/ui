@@ -46,10 +46,6 @@ next-env.d.ts
 # Tailwind CSS
 .tailwindcss-cache
 
-# Registry build output (arquivos gerados automaticamente)
-/public/r/
-!/public/r/.gitkeep
-
 # Cache directories
 .cache/
 .parcel-cache/

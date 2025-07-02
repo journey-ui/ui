@@ -1,0 +1,71 @@
+{
+  "name": "journey-ui-teste",
+  "homepage": "https://journey-ui.com",
+  "items": [
+    {
+      "name": "utils",
+      "type": "registry:lib",
+      "dependencies": [
+        "clsx",
+        "tailwind-merge"
+      ],
+      "files": [
+        {
+          "path": "lib/utils.ts",
+          "type": "registry:lib"
+        }
+      ]
+    },
+    {
+      "name": "typography",
+      "type": "registry:ui",
+      "dependencies": [
+        "class-variance-authority",
+        "@radix-ui/react-slot"
+      ],
+      "files": [
+        {
+          "path": "ui/typography.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "button",
+      "type": "registry:ui",
+      "dependencies": [
+        "class-variance-authority",
+        "@radix-ui/react-slot"
+      ],
+      "registryDependencies": [
+        "typography"
+      ],
+      "files": [
+        {
+          "path": "ui/button.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "postcss-config",
+      "type": "registry:init",
+      "files": [
+        {
+          "path": "postcss.config.mjs",
+          "type": "registry:init"
+        }
+      ]
+    },
+    {
+      "name": "global-css",
+      "type": "registry:init",
+      "files": [
+        {
+          "path": "globals.css",
+          "type": "registry:init"
+        }
+      ]
+    }
+  ]
+}
