@@ -4,7 +4,7 @@ import { logger } from '../utils/logger'
 import { spinner } from '../utils/spinner'
 import type { RegistryItem } from '../registry/schema'
 import { fetchRegistryItem } from '../registry/api'
-
+import { JourneyUiConfig } from './journey-ui-config'
 
 export async function copyRegistryFiles(
   items: RegistryItem[],
@@ -12,7 +12,8 @@ export async function copyRegistryFiles(
   options: {
     force?: boolean
     silent?: boolean
-  } = {}
+  } = {},
+  journeyUiConfig: JourneyUiConfig
 ): Promise<void> {
   const copySpinner = spinner('Copying component files...', {
     silent: options.silent,
@@ -31,21 +32,18 @@ export async function copyRegistryFiles(
           const fullFile = fullItem.files.find(f => f.path === file.path)
           if (!fullFile?.content) continue
           
-          file.content = fullFile.content
+          file.content = resolveImportsByAliases(fullFile.content, journeyUiConfig)
         }
 
-        const targetPath = path.join(targetCwd, file.target || `src${file.type === 'registry:ui' ? '/components' : ''}/${file.path}`)
-        
-        // Verificar se arquivo já existe
+        const targetPath = resolveTargetFilePath(targetCwd, file, journeyUiConfig)
+
         if (await fs.pathExists(targetPath) && !options.force) {
           logger.warn(`File ${file.target || file.path} already exists, skipping...`)
           continue
         }
 
-        // Criar diretório se não existir
         await fs.ensureDir(path.dirname(targetPath))
         
-        // Escrever arquivo
         await fs.writeFile(targetPath, JSON.parse(file.content))
       }
     }
@@ -67,7 +65,6 @@ async function fetchItemContent(name: string, type: string): Promise<RegistryIte
 }
 
 export async function validateTargetDirectory(cwd: string): Promise<boolean> {
-  // Verificar se é um projeto válido
   const packageJsonPath = path.join(cwd, 'package.json')
   
   if (!await fs.pathExists(packageJsonPath)) {
@@ -78,19 +75,33 @@ export async function validateTargetDirectory(cwd: string): Promise<boolean> {
   return true
 }
 
-export function resolveFilePath(file: { path: string; type: string; target?: string }, basePath: string): string {
-  if (file.target) {
-    return path.join(basePath, file.target)
+function resolveTargetFilePath(cwd: string, file: { target?: string, type: string, path: string }, journeyUiConfig: JourneyUiConfig) {
+  let target = ''
+
+  const resolvedTargetPaths: Record<string, string> = {
+    'registry:ui': journeyUiConfig.aliases.ui,
+    'registry:lib': journeyUiConfig.aliases.lib,
   }
 
-  // Mapear tipos para diretórios padrão
-  const typeMapping: Record<string, string> = {
-    'registry:ui': 'src/components/ui',
-    'registry:lib': 'src/lib',
-    'registry:hook': 'src/hooks',
-    'registry:init': 'src'
+  const targetDirByType = resolvedTargetPaths[file.type]
+
+
+  target = path.join(cwd, targetDirByType.replace('@/', journeyUiConfig.isSrcDir ? 'src/' : ''), file.path)
+
+  return target
+}
+
+function resolveImportsByAliases(content: string, journeyUiConfig: JourneyUiConfig) {
+  const aliases: Record<string, string> = {
+    '@/registry/lib/utils': journeyUiConfig.aliases.utils,
+    '@/registry/ui': journeyUiConfig.aliases.ui,
   }
 
-  const typeDir = typeMapping[file.type] || 'src'
-  return path.join(basePath, typeDir, file.path)
+  for (const alias in aliases) {
+    if (content.includes(alias)) {
+      content = content.replaceAll(alias, aliases[alias])
+    }
+  }
+
+  return content
 }

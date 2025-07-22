@@ -3,11 +3,10 @@ import path from 'path'
 import { logger } from '../utils/logger'
 import { Registry, RegistryItem } from './schema'
 
-const REGISTRY_URL = process.env.JOURNEY_UI_REGISTRY_URL || 'https://github.com/journey-ui/ui/tree/main/apps/www/public/r'
+const REGISTRY_URL = process.env.JOURNEY_UI_REGISTRY_URL || 'https://raw.githubusercontent.com/journey-ui/ui/main/apps/www/public/r'
 
 export async function fetchRegistry(): Promise<Registry> {
   try {
-    // Em desenvolvimento, usar arquivo local se disponível
     if (process.env.NODE_ENV === 'development') {
       const localPath = path.resolve(process.cwd(), '../../apps/www/public/r/index.json')
       if (await fs.pathExists(localPath)) {
@@ -15,7 +14,6 @@ export async function fetchRegistry(): Promise<Registry> {
       }
     }
 
-    // Buscar do registry remoto
     const response = await fetch(`${REGISTRY_URL}/index.json`)
     if (!response.ok) {
       throw new Error(`Registry fetch failed: ${response.status}`)
@@ -32,15 +30,14 @@ export async function fetchRegistryItem(name: string, type: string): Promise<Reg
   try {
     const typeDir = type.split(':')[1] // registry:ui -> ui
     
-    // Em desenvolvimento, usar arquivo local se disponível
     if (process.env.NODE_ENV === 'development') {
-      const localPath = path.resolve(process.cwd(), `../../apps/www/public/r/${typeDir}/${name}.json`)
+      const currentFile = __filename || (typeof __dirname !== 'undefined' ? __dirname : '')
+      const localPath = path.resolve(currentFile, '..', '..', '..', '..', 'apps', 'www', 'public', 'r', typeDir, `${name}.json`)
       if (await fs.pathExists(localPath)) {
         return await fs.readJson(localPath)
       }
     }
 
-    // Buscar do registry remoto
     const response = await fetch(`${REGISTRY_URL}/${typeDir}/${name}.json`)
 
     if (!response.ok) {

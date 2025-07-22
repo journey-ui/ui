@@ -3,6 +3,7 @@ import { z } from 'zod'
 import { installComponents } from '../utils/component-installer'
 import { logger } from '../utils/logger'
 import { highlighter } from '../utils/highlighter'
+import { getJourneyUiConfig } from '../utils/journey-ui-config'
 
 const addOptionsSchema = z.object({
   components: z.array(z.string()).optional(),
@@ -31,8 +32,12 @@ export const add = new Command()
         ...opts,
       })
 
-      // Verificar se o projeto foi inicializado
-      // criar outra validacao...
+      const journeyUiConfig = await getJourneyUiConfig(options.cwd)
+
+      if (!journeyUiConfig) {
+        logger.error('Journey UI config not found.')
+        process.exit(1)
+      }
 
       if (!options.components && !options.type) {
         logger.error('')
@@ -55,7 +60,8 @@ export const add = new Command()
         components: options.components,
         type: options.type,
         force: options.force,
-        silent: options.silent
+        silent: options.silent,
+        journeyUiConfig,
       })
 
       logger.info('')
