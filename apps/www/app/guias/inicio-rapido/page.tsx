@@ -1,5 +1,6 @@
 import { Typography } from "@/registry/ui"
 import { TerminalBlock } from "@/components/terminal-block"
+import { LIB_NAME } from "@/lib/constants"
 
 export default function InicioRapidoPage() {
   return (
@@ -18,10 +19,14 @@ export default function InicioRapidoPage() {
           <Typography variant="p1">
             Configure o projeto para usar o Journey UI.
           </Typography>
-          
-          <TerminalBlock title="Terminal">
-            npx journey-ui init
-          </TerminalBlock>
+
+          <Typography variant="p1">
+            O comando de instalação via script está em desenvolvimento, para configurar opte pelo método manual.
+          </Typography>
+
+          <Typography variant="p1">
+            Para instalar o Journey UI, você deve fazer a configuracao manual do projeto criando variaveis de ambiente, instalando os pacotes, criando arquivo utils e criando arquivo de configuração do Journey UI (journey-ui.json).
+          </Typography>
         </section>
 
         <section className="space-y-4">
@@ -31,7 +36,7 @@ export default function InicioRapidoPage() {
           </Typography>
           
           <TerminalBlock title="Terminal">
-            npx journey-ui add button
+            {`npx ${LIB_NAME} add button`}
           </TerminalBlock>
         </section>
       </div>

@@ -3,6 +3,7 @@ import { CodeBlock } from "@/components/code-block"
 import { InlineCode } from "@/components/code-block"
 import { Button } from "@/registry/ui"
 import { ArrowRight, Download, Heart, Plus, Settings, Trash2, ExternalLink, Search, User } from "lucide-react"
+import { LIB_NAME } from "@/lib/constants"
 
 export default function ButtonPage() {
   return (
@@ -29,7 +30,7 @@ export default function ButtonPage() {
           </Typography>
           
           <CodeBlock language="bash" title="Terminal">
-            npx journey-ui add button
+            {`npx ${LIB_NAME} add button`}
           </CodeBlock>
           
           <Typography variant="p1">

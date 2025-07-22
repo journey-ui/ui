@@ -3,7 +3,7 @@ import path from 'path'
 import { logger } from '../utils/logger'
 import { Registry, RegistryItem } from './schema'
 
-const REGISTRY_URL = process.env.JOURNEY_UI_REGISTRY_URL || 'https://raw.githubusercontent.com/journey-ui/ui/main/apps/www/public/r'
+const REGISTRY_URL = 'https://raw.githubusercontent.com/journey-ui/ui/main/apps/www/public/r'
 
 export async function fetchRegistry(): Promise<Registry> {
   try {
@@ -15,6 +15,7 @@ export async function fetchRegistry(): Promise<Registry> {
     }
 
     const response = await fetch(`${REGISTRY_URL}/index.json`)
+
     if (!response.ok) {
       throw new Error(`Registry fetch failed: ${response.status}`)
     }
