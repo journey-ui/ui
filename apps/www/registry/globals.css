@@ -1,6 +1,10 @@
 @import "tailwindcss";
 
 @theme {
+  /* Font-family */
+  --font-*: initial;
+  --font-sans: Nunito Sans, sans-serif;
+
   /* Spacing */
   --radius: 0.5rem;
 
