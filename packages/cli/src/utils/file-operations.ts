@@ -1,5 +1,6 @@
 import fs from 'fs-extra'
 import path from 'path'
+import prompts from 'prompts'
 import { logger } from '../utils/logger'
 import { spinner } from '../utils/spinner'
 import type { RegistryItem } from '../registry/schema'
@@ -22,7 +23,7 @@ export async function copyRegistryFiles(
   try {
     for (const item of items) {
       if (!item.files || item.files.length === 0) continue
-
+      
       for (const file of item.files) {
         if (!file.content) {
           // Buscar conteúdo do arquivo se não estiver incluído
@@ -36,10 +37,30 @@ export async function copyRegistryFiles(
         }
 
         const targetPath = resolveTargetFilePath(targetCwd, file, journeyUiConfig)
-
+        
         if (await fs.pathExists(targetPath) && !options.force) {
-          logger.warn(`File ${file.target || file.path} already exists, skipping...`)
-          continue
+          copySpinner.stop()
+
+          const { shouldOverwrite } = await prompts({
+            type: 'confirm',
+            name: 'shouldOverwrite',
+            message: `O arquivo ${file.target || file.path} já existe. Deseja sobrescrever?`,
+            initial: false
+          }, {
+            onCancel: () => {
+              logger.info('Operação cancelada pelo usuário')
+              process.exit(0)
+            }
+          })
+
+          copySpinner.start()
+
+          if (!shouldOverwrite) {
+            logger.info(`Arquivo ${file.target || file.path} mantido (não sobrescrito)`)
+            continue
+          }
+          
+          logger.info(`Sobrescrevendo arquivo ${file.target || file.path}...`)
         }
 
         await fs.ensureDir(path.dirname(targetPath))
@@ -85,8 +106,8 @@ function resolveTargetFilePath(cwd: string, file: { target?: string, type: strin
 
   const targetDirByType = resolvedTargetPaths[file.type]
 
-
-  target = path.join(cwd, targetDirByType.replace('@/', journeyUiConfig.isSrcDir ? 'src/' : ''), file.path)
+  const filename = file.path.split('/').pop() || ''
+  target = path.join(cwd, targetDirByType.replace('@/', journeyUiConfig.isSrcDir ? 'src/' : ''), filename)
 
   return target
 }
