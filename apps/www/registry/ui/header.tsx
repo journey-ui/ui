@@ -21,7 +21,6 @@ export interface BreadcrumbsProps {
   breadcrumbs?: Array<Breadcrumb>;
   isLoading?: boolean;
   returnButtonLabel?: string;
-  skip?: number;
   navigationMenu?: NavigationMenuProps;
 }
 
@@ -32,10 +31,9 @@ const Header = ({
   image,
   isLoading = false,
   returnButtonLabel,
-  skip = 1,
   navigationMenu,
 }: BreadcrumbsProps) => {
-  const backLink = useBacklink(skip);
+  const backLink = useBacklink(1);
   const hasNavigationMenu = (navigationMenu?.links?.length ?? 0) > 0;
 
   return (

@@ -41,6 +41,11 @@ export function Sidebar() {
                 <Typography variant="p1">Button</Typography>
               </Link>
             </li>
+            <li>
+              <Link href="/componentes/header">
+                <Typography variant="p1">Header</Typography>
+              </Link>
+            </li>
             
           </ul>   
         </nav>
