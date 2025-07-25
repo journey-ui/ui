@@ -1,5 +1,5 @@
 import { Typography } from "@/registry/ui";
-import { CodeBlock } from "@/components/code-block";
+import { CodeBlock, InlineCode } from "@/components/code-block";
 import Header from "@/registry/ui/header";
 
 export default function HeaderPage() {
@@ -22,32 +22,11 @@ export default function HeaderPage() {
           Instalação
         </Typography>
 
-        <Typography variant="p1">
-          Para instalar o componente:
-        </Typography>
+        <Typography variant="p1">Para instalar o componente:</Typography>
 
         <CodeBlock language="bash" title="Terminal">
           npx journey-ui add header
         </CodeBlock>
-      </section>
-
-      {/* Props */}
-      <section className="mb-12">
-        <Typography variant="h2" className="mb-6">
-          Propriedades
-        </Typography>
-
-        <CodeBlock language="tsx" filename="components/ui/typography.tsx">
-          {`
-          Title: Título da página *
-          Description: Subtítulo ou descrição da página
-          Breadcrumbs: Caminho de navegação até a página
-          Image: Caminho da imagem decorativa (opcional)
-          ReturnButtonLabel: Label do botão de voltar, se necessário
-          IsLoading: boolean Mostra placeholders ao carregar (skeletons)
-          `}
-        </CodeBlock>
-
       </section>
 
       {/* Exemplos de uso */}
@@ -57,9 +36,11 @@ export default function HeaderPage() {
         </Typography>
 
         {/* Exemplo 1 */}
-        <Typography variant="h3" className="mb-4">Header simples com título e descrição</Typography>
-        <CodeBlock language="tsx" filename="exemplo1.tsx">
-{`<Header
+        <Typography variant="h3" className="mb-4">
+          Header simples com título e descrição
+        </Typography>
+        <CodeBlock language="tsx" filename="page.tsx">
+          {`<Header
   title="Bem vindo(a) ao Portal de Parceiros"
   description="Gerencie suas ofertas, produtos, clientes e muito mais em um só lugar."
 />`}
@@ -72,9 +53,11 @@ export default function HeaderPage() {
         </div>
 
         {/* Exemplo 2 */}
-        <Typography variant="h3" className="mb-4">Com título e breadcrumbs</Typography>
-        <CodeBlock language="tsx" filename="exemplo2.tsx">
-{`<Header
+        <Typography variant="h3" className="mb-4">
+          Com título e breadcrumbs
+        </Typography>
+        <CodeBlock language="tsx" filename="page.tsx">
+          {`<Header
   title="Bem vindo(a) ao Portal de Parceiros"
   breadcrumbs={[
     { label: "Home", path: "/" },
@@ -93,9 +76,11 @@ export default function HeaderPage() {
         </div>
 
         {/* Exemplo 3 */}
-        <Typography variant="h3" className="mb-4">Com título, descrição e breadcrumbs</Typography>
-        <CodeBlock language="tsx" filename="exemplo3.tsx">
-{`<Header
+        <Typography variant="h3" className="mb-4">
+          Com título, descrição e breadcrumbs
+        </Typography>
+        <CodeBlock language="tsx" filename="page.tsx">
+          {`<Header
   title="Configuração de Usuários"
   description="Gerencie e visualize os perfis de acesso dos usuários cadastrados em sua empresa para acesso ao portal."
   breadcrumbs={[
@@ -116,6 +101,82 @@ export default function HeaderPage() {
             ]}
           />
         </div>
+      </section>
+
+      {/* Props */}
+      <section className="mb-12">
+        <Typography variant="h2" className="mb-6">
+          Propriedades
+        </Typography>
+
+        <table className="w-full border-collapse border border-slate-200">
+          <thead>
+            <tr className="bg-slate-50">
+              <th className="border border-slate-200 px-4 py-3 text-left">
+                <Typography variant="p2b">Propriedade</Typography>
+              </th>
+              <th className="border border-slate-200 px-4 py-3 text-left">
+                <Typography variant="p2b">Tipo</Typography>
+              </th>
+              <th className="border border-slate-200 px-4 py-3 text-left">
+                <Typography variant="p2b">Padrão</Typography>
+              </th>
+              <th className="border border-slate-200 px-4 py-3 text-left">
+                <Typography variant="p2b">Descrição</Typography>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td className="border border-slate-200 px-4 py-3">
+                <InlineCode>title</InlineCode>
+              </td>
+              <td className="border border-slate-200 px-4 py-3">
+                <Typography variant="p2">string</Typography>
+              </td>
+              <td className="border border-slate-200 px-4 py-3">
+                <Typography variant="p2">Obrigatório</Typography>
+              </td>
+              <td className="border border-slate-200 px-4 py-3">
+                <Typography variant="p2">Título principal da página</Typography>
+              </td>
+            </tr>
+            <tr>
+              <td className="border border-slate-200 px-4 py-3">
+                <InlineCode>description</InlineCode>
+              </td>
+              <td className="border border-slate-200 px-4 py-3">
+                <Typography variant="p2">string</Typography>
+              </td>
+              <td className="border border-slate-200 px-4 py-3">
+                <Typography variant="p2">Opcional</Typography>
+              </td>
+              <td className="border border-slate-200 px-4 py-3">
+                <Typography variant="p2">
+                  Subtítulo ou descrição da página
+                </Typography>
+              </td>
+            </tr>
+            <tr>
+              <td className="border border-slate-200 px-4 py-3">
+                <InlineCode>breadcrumbs</InlineCode>
+              </td>
+              <td className="border border-slate-200 px-4 py-3">
+                <Typography variant="p2">
+                  Array&lt;{`{ label: string; path?: string }`}&gt; ou []
+                </Typography>
+              </td>
+              <td className="border border-slate-200 px-4 py-3">
+                <Typography variant="p2">Opcional</Typography>
+              </td>
+              <td className="border border-slate-200 px-4 py-3">
+                <Typography variant="p2">
+                  Caminho de navegação até a página
+                </Typography>
+              </td>
+            </tr>
+          </tbody>
+        </table>
       </section>
     </div>
   );
