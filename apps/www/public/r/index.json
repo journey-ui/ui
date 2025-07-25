@@ -48,6 +48,18 @@
       ]
     },
     {
+      "name": "badge",
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "ui/badge.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
       "name": "postcss-config",
       "type": "registry:init",
       "files": [

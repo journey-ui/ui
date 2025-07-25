@@ -5,7 +5,7 @@
     {
       "path": "postcss.config.mjs",
       "type": "registry:init",
-      "content": "\"const config = {\\n  plugins: [\\\"@tailwindcss/postcss\\\"],\\n};\\n\\nexport default config;\\n\""
+      "content": "\"const config = {\\r\\n  plugins: [\\\"@tailwindcss/postcss\\\"],\\r\\n};\\r\\n\\r\\nexport default config;\\r\\n\""
     }
   ]
 }

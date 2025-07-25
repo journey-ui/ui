@@ -1,0 +1,13 @@
+{
+  "name": "badge",
+  "type": "registry:ui",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "ui/badge.tsx",
+      "type": "registry:ui",
+      "content": "\"interface BadgeProps {\\r\\n  label?: string;\\r\\n  description?: string;\\r\\n  className?: string;\\r\\n  isLoading?: boolean;\\r\\n  hidden?: boolean;\\r\\n}\\r\\n\\r\\nexport function Badge({\\r\\n  label,\\r\\n  description,\\r\\n  className = \\\"\\\",\\r\\n  isLoading = false,\\r\\n  hidden = false,\\r\\n}: BadgeProps) {\\r\\n  const baseClasses =\\r\\n    \\\"px-2 py-1 h-min text-white text-xs font-semibold leading-5 rounded-full capitalize text-center inline-block\\\";\\r\\n\\r\\n  const loadingClasses = \\\"bg-gray-lighter text-gray-lighter animate-pulse\\\";\\r\\n\\r\\n  return (\\r\\n    <span\\r\\n      className={`${baseClasses} ${isLoading ? loadingClasses : className}`}\\r\\n      hidden={hidden}\\r\\n      title={description}\\r\\n    >\\r\\n      {label}\\r\\n    </span>\\r\\n  );\\r\\n}\\r\\n\""
+    }
+  ]
+}
