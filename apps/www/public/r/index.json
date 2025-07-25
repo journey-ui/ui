@@ -60,6 +60,20 @@
       ]
     },
     {
+      "name": "tooltip",
+      "type": "registry:ui",
+      "dependencies": [
+        "@radix-ui/react-tooltip"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "ui/tooltip.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
       "name": "postcss-config",
       "type": "registry:init",
       "files": [
