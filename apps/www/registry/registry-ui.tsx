@@ -24,4 +24,16 @@ export const ui: Registry["items"] = [
       },
     ],
   },
+    {
+    name: "header",
+    type: "registry:ui",
+    dependencies: [],
+    registryDependencies: [],
+    files: [
+      {
+        path: "ui/header.tsx",
+        type: "registry:ui",
+      },
+    ],
+  },
 ]
