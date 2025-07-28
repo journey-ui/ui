@@ -9,17 +9,17 @@ import {
 } from '../registry/api'
 import { copyRegistryFiles, validateTargetDirectory } from '../utils/file-operations'
 import { installProjectDependencies } from './dependencies'
-
+import { JourneyUiConfig } from './journey-ui-config'
 export interface InstallOptions {
   cwd: string
   components?: string[]
   type?: string
   force?: boolean
   silent?: boolean
+  journeyUiConfig: JourneyUiConfig
 }
 
 export async function installComponents(options: InstallOptions): Promise<void> {
-  // Validar diretório de destino
   if (!await validateTargetDirectory(options.cwd)) {
     process.exit(1)
   }
@@ -78,8 +78,8 @@ export async function installComponents(options: InstallOptions): Promise<void> 
   // Copiar arquivos
   await copyRegistryFiles(allItems, options.cwd, {
     force: options.force,
-    silent: options.silent
-  })
+    silent: options.silent,
+  }, options.journeyUiConfig)
 
   // Instalar dependências npm
   await installProjectDependencies(dependencies, devDependencies, options.cwd, {

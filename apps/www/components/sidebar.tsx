@@ -5,7 +5,6 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 export function Sidebar() {
-
   const pathname = usePathname();
   const isHome = pathname === "/";
 
@@ -19,10 +18,12 @@ export function Sidebar() {
           <ul>
             <li>
               <Link href="/guias/inicio-rapido">
-                <Typography variant="p1">Inicio rápido</Typography>
+                <Typography variant="p1" className="hover:underline">
+                  Inicio rápido
+                </Typography>
               </Link>
             </li>
-          </ul>   
+          </ul>
         </nav>
       </div>
 
@@ -33,12 +34,23 @@ export function Sidebar() {
           <ul className="space-y-2">
             <li>
               <Link href="/componentes/typography">
-                <Typography variant="p1">Typography</Typography>
+                <Typography variant="p1" className="hover:underline">
+                  Typography
+                </Typography>
               </Link>
             </li>
             <li>
               <Link href="/componentes/button">
-                <Typography variant="p1">Button</Typography>
+                <Typography variant="p1" className="hover:underline">
+                  Button
+                </Typography>
+              </Link>
+            </li>
+            <li>
+              <Link href="/componentes/tooltip">
+                <Typography variant="p1" className="hover:underline">
+                  Tooltip
+                </Typography>
               </Link>
             </li>
             <li>
@@ -46,10 +58,9 @@ export function Sidebar() {
                 <Typography variant="p1">Header</Typography>
               </Link>
             </li>
-            
           </ul>   
         </nav>
       </div>
     </div>
-  )
+  );
 }

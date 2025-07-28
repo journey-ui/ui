@@ -1,7 +1,6 @@
 import path from "path"
 import fs from "fs/promises"
 import { RegistryItem } from "./schema.js"
-import { fixImport } from "./fix-import.mts"
 
 const { registry } = await import("../registry/index.js")
 
@@ -23,8 +22,6 @@ async function buildRegistryItem(registryItem: RegistryItem) {
       path.join(process.cwd(), "registry", file.path),
       "utf8"
     )
-
-    content = fixImport(content)
 
     registryItemJson = {
       ...registryItemJson,

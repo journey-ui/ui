@@ -1,10 +1,11 @@
 import fs from 'fs-extra'
 import path from 'path'
+import prompts from 'prompts'
 import { logger } from '../utils/logger'
 import { spinner } from '../utils/spinner'
 import type { RegistryItem } from '../registry/schema'
 import { fetchRegistryItem } from '../registry/api'
-
+import { JourneyUiConfig } from './journey-ui-config'
 
 export async function copyRegistryFiles(
   items: RegistryItem[],
@@ -12,7 +13,8 @@ export async function copyRegistryFiles(
   options: {
     force?: boolean
     silent?: boolean
-  } = {}
+  } = {},
+  journeyUiConfig: JourneyUiConfig
 ): Promise<void> {
   const copySpinner = spinner('Copying component files...', {
     silent: options.silent,
@@ -21,7 +23,7 @@ export async function copyRegistryFiles(
   try {
     for (const item of items) {
       if (!item.files || item.files.length === 0) continue
-
+      
       for (const file of item.files) {
         if (!file.content) {
           // Buscar conteúdo do arquivo se não estiver incluído
@@ -31,21 +33,38 @@ export async function copyRegistryFiles(
           const fullFile = fullItem.files.find(f => f.path === file.path)
           if (!fullFile?.content) continue
           
-          file.content = fullFile.content
+          file.content = resolveImportsByAliases(fullFile.content, journeyUiConfig)
         }
 
-        const targetPath = path.join(targetCwd, file.target || `src${file.type === 'registry:ui' ? '/components' : ''}/${file.path}`)
+        const targetPath = resolveTargetFilePath(targetCwd, file, journeyUiConfig)
         
-        // Verificar se arquivo já existe
         if (await fs.pathExists(targetPath) && !options.force) {
-          logger.warn(`File ${file.target || file.path} already exists, skipping...`)
-          continue
+          copySpinner.stop()
+
+          const { shouldOverwrite } = await prompts({
+            type: 'confirm',
+            name: 'shouldOverwrite',
+            message: `O arquivo ${file.target || file.path} já existe. Deseja sobrescrever?`,
+            initial: false
+          }, {
+            onCancel: () => {
+              logger.info('Operação cancelada pelo usuário')
+              process.exit(0)
+            }
+          })
+
+          copySpinner.start()
+
+          if (!shouldOverwrite) {
+            logger.info(`Arquivo ${file.target || file.path} mantido (não sobrescrito)`)
+            continue
+          }
+          
+          logger.info(`Sobrescrevendo arquivo ${file.target || file.path}...`)
         }
 
-        // Criar diretório se não existir
         await fs.ensureDir(path.dirname(targetPath))
         
-        // Escrever arquivo
         await fs.writeFile(targetPath, JSON.parse(file.content))
       }
     }
@@ -67,7 +86,6 @@ async function fetchItemContent(name: string, type: string): Promise<RegistryIte
 }
 
 export async function validateTargetDirectory(cwd: string): Promise<boolean> {
-  // Verificar se é um projeto válido
   const packageJsonPath = path.join(cwd, 'package.json')
   
   if (!await fs.pathExists(packageJsonPath)) {
@@ -78,19 +96,33 @@ export async function validateTargetDirectory(cwd: string): Promise<boolean> {
   return true
 }
 
-export function resolveFilePath(file: { path: string; type: string; target?: string }, basePath: string): string {
-  if (file.target) {
-    return path.join(basePath, file.target)
+function resolveTargetFilePath(cwd: string, file: { target?: string, type: string, path: string }, journeyUiConfig: JourneyUiConfig) {
+  let target = ''
+
+  const resolvedTargetPaths: Record<string, string> = {
+    'registry:ui': journeyUiConfig.aliases.ui,
+    'registry:lib': journeyUiConfig.aliases.lib,
   }
 
-  // Mapear tipos para diretórios padrão
-  const typeMapping: Record<string, string> = {
-    'registry:ui': 'src/components/ui',
-    'registry:lib': 'src/lib',
-    'registry:hook': 'src/hooks',
-    'registry:init': 'src'
+  const targetDirByType = resolvedTargetPaths[file.type]
+
+  const filename = file.path.split('/').pop() || ''
+  target = path.join(cwd, targetDirByType.replace('@/', journeyUiConfig.isSrcDir ? 'src/' : ''), filename)
+
+  return target
+}
+
+function resolveImportsByAliases(content: string, journeyUiConfig: JourneyUiConfig) {
+  const aliases: Record<string, string> = {
+    '@/registry/lib/utils': journeyUiConfig.aliases.utils,
+    '@/registry/ui': journeyUiConfig.aliases.ui,
   }
 
-  const typeDir = typeMapping[file.type] || 'src'
-  return path.join(basePath, typeDir, file.path)
+  for (const alias in aliases) {
+    if (content.includes(alias)) {
+      content = content.replaceAll(alias, aliases[alias])
+    }
+  }
+
+  return content
 }

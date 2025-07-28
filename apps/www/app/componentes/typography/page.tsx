@@ -1,6 +1,7 @@
 import { Typography } from "@/registry/ui"
 import { CodeBlock } from "@/components/code-block"
 import { InlineCode } from "@/components/code-block"
+import { LIB_NAME } from "@/lib/constants"
 
 export default function TypographyPage() {
   return (
@@ -27,7 +28,7 @@ export default function TypographyPage() {
           </Typography>
           
           <CodeBlock language="bash" title="Terminal">
-            npx journey-ui add typography
+            {`npx ${LIB_NAME} add typography`}
           </CodeBlock>
           
           <Typography variant="p1">

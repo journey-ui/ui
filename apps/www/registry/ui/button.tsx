@@ -108,7 +108,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
           className
         )}
         ref={ref}
-        {...props}
+        {...props as any}
       >
         {asChild ? (
           <span className="contents">

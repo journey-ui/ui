@@ -24,10 +24,22 @@ export const ui: Registry["items"] = [
       },
     ],
   },
-    {
+  {
+    name: "tooltip",
+    type: "registry:ui",
+    dependencies: ["@radix-ui/react-tooltip"],
+    registryDependencies: [],
+    files: [
+      {
+        path: "ui/tooltip.tsx",
+        type: "registry:ui",
+      },
+    ],
+  },
+   {
     name: "header",
     type: "registry:ui",
-    dependencies: [],
+    dependencies: ["class-variance-authority", "@radix-ui/react-slot"],
     registryDependencies: [],
     files: [
       {
