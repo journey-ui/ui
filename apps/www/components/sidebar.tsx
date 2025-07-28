@@ -47,6 +47,13 @@ export function Sidebar() {
               </Link>
             </li>
             <li>
+              <Link href="/componentes/badge">
+                <Typography variant="p1" className="hover:underline">
+                  Badge
+                </Typography>
+              </Link>
+            </li>
+            <li>   
               <Link href="/componentes/tooltip">
                 <Typography variant="p1" className="hover:underline">
                   Tooltip

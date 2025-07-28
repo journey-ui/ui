@@ -25,6 +25,18 @@ export const ui: Registry["items"] = [
     ],
   },
   {
+    name: "badge",
+    type: "registry:ui",
+    dependencies: [],
+    registryDependencies: [],
+    files: [
+      {
+        path: "ui/badge.tsx",
+        type: "registry:ui",
+      },
+    ],
+  },
+  {
     name: "tooltip",
     type: "registry:ui",
     dependencies: ["@radix-ui/react-tooltip"],
