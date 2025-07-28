@@ -1,30 +1,31 @@
-interface BadgeProps {
-  label?: string;
-  description?: string;
-  className?: string;
-  isLoading?: boolean;
-  hidden?: boolean;
-}
+import { cva, VariantProps } from "class-variance-authority";
+import { cn } from "@/registry/lib/utils";
 
-export function Badge({
-  label,
-  description,
-  className = "",
-  isLoading = false,
-  hidden = false,
-}: BadgeProps) {
-  const baseClasses =
-    "px-2 py-1 h-min text-white text-xs font-semibold leading-5 rounded-full capitalize text-center inline-block";
+const badgeVariants = cva(
+  "px-2 py-1 h-min text-white text-xs font-semibold leading-5 rounded-full capitalize text-center inline-flex items-center gap-1",
+  {
+    variants: {
+      variant: {
+        info: "bg-status-info",
+        success: "bg-status-success",
+        warning: "bg-status-warning",
+        alert: "bg-status-alert",
+      },
+    },
+    defaultVariants: {
+      variant: "info",
+    },
+  }
+)
 
-  const loadingClasses = "bg-gray-lighter text-gray-lighter animate-pulse";
+export interface BadgeProps
+  extends React.HTMLAttributes<HTMLSpanElement>,
+    VariantProps<typeof badgeVariants> {}
 
+function Badge({ className, variant, ...props }: BadgeProps) {
   return (
-    <span
-      className={`${baseClasses} ${isLoading ? loadingClasses : className}`}
-      hidden={hidden}
-      title={description}
-    >
-      {label}
-    </span>
-  );
+    <div className={cn(badgeVariants({ variant }), className)} {...props} />
+  )
 }
+
+export { Badge, badgeVariants }
