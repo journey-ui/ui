@@ -12,6 +12,11 @@ const tooltipVariantClasses = {
   dark: "bg-gray-800 text-white shadow-black/30",
 };
 
+const tooltipArrowClasses = {
+  light: "fill-[#EEEEEE]",
+  dark: "fill-gray-800",
+};
+
 type TooltipVariant = keyof typeof tooltipVariantClasses;
 
 export interface TooltipContentProps
@@ -32,7 +37,14 @@ const TooltipContent = React.forwardRef<
       className
     )}
     {...props}
-  />
+  >
+    {props.children}
+    <TooltipPrimitive.Arrow
+      width={11}
+      height={5}
+      className={cn(tooltipArrowClasses[variant])}
+    />
+  </TooltipPrimitive.Content>
 ));
 TooltipContent.displayName = TooltipPrimitive.Content.displayName;
 
