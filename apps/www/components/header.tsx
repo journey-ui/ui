@@ -3,7 +3,7 @@
 import Link from "next/link"
 import { Typography } from "@/registry/ui"
 
-export function Header() {
+export function DocumentationHeader() {
 
   return (
     <header className="sticky top-0 z-50 bg-white/80 backdrop-blur-sm border-b border-zinc-800">

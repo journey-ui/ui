@@ -48,4 +48,16 @@ export const ui: Registry["items"] = [
       },
     ],
   },
-];
+   {
+    name: "header",
+    type: "registry:ui",
+    dependencies: ["class-variance-authority", "@radix-ui/react-slot"],
+    registryDependencies: [],
+    files: [
+      {
+        path: "ui/header.tsx",
+        type: "registry:ui",
+      },
+    ],
+  },
+]

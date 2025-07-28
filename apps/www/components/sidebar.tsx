@@ -60,7 +60,12 @@ export function Sidebar() {
                 </Typography>
               </Link>
             </li>
-          </ul>
+            <li>
+              <Link href="/componentes/header">
+                <Typography variant="p1">Header</Typography>
+              </Link>
+            </li>
+          </ul>   
         </nav>
       </div>
     </div>

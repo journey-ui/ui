@@ -5,10 +5,7 @@
     {
       "name": "utils",
       "type": "registry:lib",
-      "dependencies": [
-        "clsx",
-        "tailwind-merge"
-      ],
+      "dependencies": ["clsx", "tailwind-merge"],
       "files": [
         {
           "path": "lib/utils.ts",
@@ -19,10 +16,7 @@
     {
       "name": "typography",
       "type": "registry:ui",
-      "dependencies": [
-        "class-variance-authority",
-        "@radix-ui/react-slot"
-      ],
+      "dependencies": ["class-variance-authority", "@radix-ui/react-slot"],
       "files": [
         {
           "path": "ui/typography.tsx",
@@ -33,16 +27,41 @@
     {
       "name": "button",
       "type": "registry:ui",
-      "dependencies": [
-        "class-variance-authority",
-        "@radix-ui/react-slot"
-      ],
-      "registryDependencies": [
-        "typography"
-      ],
+      "dependencies": ["class-variance-authority", "@radix-ui/react-slot"],
+      "registryDependencies": ["typography"],
       "files": [
         {
           "path": "ui/button.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "header",
+      "type": "registry:ui",
+      "dependencies": ["class-variance-authority", "@radix-ui/react-slot"],
+      "registryDependencies": [
+        "class-variance-authority",
+        "@radix-ui/react-slot"
+      ],
+      "files": [
+        {
+          "path": "ui/header.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+     {
+      "name": "breadcrumbs",
+      "type": "registry:ui",
+      "dependencies": ["class-variance-authority", "@radix-ui/react-slot"],
+      "registryDependencies": [
+        "class-variance-authority",
+        "@radix-ui/react-slot"
+      ],
+      "files": [
+        {
+          "path": "ui/breadcrumbs.tsx",
           "type": "registry:ui"
         }
       ]
