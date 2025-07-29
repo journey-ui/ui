@@ -2,6 +2,7 @@ import { Registry } from "@/scripts/schema"
 
 import { lib } from "@/registry/registry-lib"
 import { ui } from "@/registry/registry-ui"
+import { blocks } from "@/registry/registry-blocks"
 
 export const registry: Registry = {
   name: "journey-ui",
@@ -9,6 +10,7 @@ export const registry: Registry = {
   items: [
     ...lib,
     ...ui,
+    ...blocks,
     {
       name: "postcss-config",
       type: "registry:init",
@@ -31,4 +33,3 @@ export const registry: Registry = {
     },
   ],
 }
-

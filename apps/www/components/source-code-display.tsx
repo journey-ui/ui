@@ -23,7 +23,7 @@ export async function SourceCodeDisplay({
   }
 
   return (
-    <CodeBlock language={language} title={title || path.basename(filePath)} showLineNumbers>
+    <CodeBlock expandable={10} language={language} title={title || path.basename(filePath)} showLineNumbers>
       {sourceCode}
     </CodeBlock>
   )

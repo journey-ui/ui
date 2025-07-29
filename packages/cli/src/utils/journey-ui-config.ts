@@ -12,6 +12,7 @@ export interface JourneyUiConfig {
     ui: string
     utils: string
     lib: string
+    blocks: string
   }
 }
 

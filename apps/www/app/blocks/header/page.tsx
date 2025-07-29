@@ -1,10 +1,13 @@
-import { Typography } from "@/registry/ui";
+import { Typography } from "@/registry/ui/typography";
 import { CodeBlock, InlineCode } from "@/components/code-block";
-import Header from "@/registry/ui/header";
+import { Header } from "@/registry/blocks/header";
+import { LIB_NAME } from "@/lib/constants";
+import { SourceCodeDisplay } from "@/components/source-code-display";
 
 export default function HeaderPage() {
   return (
     <div className="container mx-auto px-4 py-8 max-w-6xl">
+
       {/* Introdução */}
       <div className="mb-12">
         <Typography variant="h1" className="mb-4">
@@ -17,16 +20,22 @@ export default function HeaderPage() {
       </div>
 
       {/* Instalação */}
-      <section className="mb-12">
-        <Typography variant="h2" className="mb-6">
-          Instalação
-        </Typography>
-
+      <section className="mb-12 space-y-4">
+        <Typography variant="h2" className="mb-6">Instalação</Typography>
         <Typography variant="p1">Para instalar o componente:</Typography>
 
         <CodeBlock language="bash" title="Terminal">
-          npx journey-ui add header
+          {`npx ${LIB_NAME} add header`}
         </CodeBlock>
+
+        <Typography variant="p1">
+            Ou copie e cole o código do componente diretamente:
+          </Typography>
+
+          <SourceCodeDisplay
+            filePath="registry/blocks/header.tsx"
+            language="tsx"
+          />
       </section>
 
       {/* Exemplos de uso */}
@@ -43,12 +52,14 @@ export default function HeaderPage() {
           {`<Header
   title="Bem vindo(a) ao Portal de Parceiros"
   description="Gerencie suas ofertas, produtos, clientes e muito mais em um só lugar."
+  rightImagePath="/caminho-da-imagem.svg"
 />`}
         </CodeBlock>
         <div className="my-6">
           <Header
             title="Bem vindo(a) ao Portal de Parceiros"
             description="Gerencie suas ofertas, produtos, clientes e muito mais em um só lugar."
+            rightImagePath="/assets/HeaderImg.svg"
           />
         </div>
 
@@ -63,6 +74,7 @@ export default function HeaderPage() {
     { label: "Home", path: "/" },
     { label: "Página 1", path: "/" },
   ]}
+  rightImagePath="/caminho-da-imagem.svg"
 />`}
         </CodeBlock>
         <div className="my-6">
@@ -72,6 +84,7 @@ export default function HeaderPage() {
               { label: "Home", path: "/" },
               { label: "Página 1", path: "/" },
             ]}
+            rightImagePath="/assets/HeaderImg.svg"
           />
         </div>
 
@@ -88,6 +101,7 @@ export default function HeaderPage() {
     { label: "Configurações" },
     { label: "Configuração de Usuários" },
   ]}
+  rightImagePath="/caminho-da-imagem.svg"
 />`}
         </CodeBlock>
         <div className="my-6">
@@ -96,9 +110,10 @@ export default function HeaderPage() {
             description="Gerencie e visualize os perfis de acesso dos usuários cadastrados em sua empresa para acesso ao portal."
             breadcrumbs={[
               { label: "Home", path: "/" },
-              { label: "Configurações" },
+              { label: "Configurações", path: "/configuracoes" },
               { label: "Configuração de Usuários" },
             ]}
+            rightImagePath="/assets/HeaderImg.svg"
           />
         </div>
       </section>

@@ -1,7 +1,7 @@
 "use client"
 
 import Link from "next/link"
-import { Typography } from "@/registry/ui"
+import { Typography } from "@/registry/ui/typography"
 
 export function DocumentationHeader() {
 

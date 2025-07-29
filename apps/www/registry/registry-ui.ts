@@ -48,14 +48,14 @@ export const ui: Registry["items"] = [
       },
     ],
   },
-   {
-    name: "header",
+  {
+    name: "breadcrumbs",
     type: "registry:ui",
-    dependencies: ["class-variance-authority", "@radix-ui/react-slot"],
-    registryDependencies: [],
+    dependencies: ["@untitled-ui/icons-react"],
+    registryDependencies: ["typography"],
     files: [
       {
-        path: "ui/header.tsx",
+        path: "ui/breadcrumbs.tsx",
         type: "registry:ui",
       },
     ],

@@ -1,20 +1,20 @@
-import { ChevronRight } from "@untitled-ui/icons-react";
 import Link from "next/link";
+import { ChevronRight } from "@untitled-ui/icons-react";
+import { Typography } from "./typography";
 
-export interface Breadcrumb {
+export interface BreadcrumbItem {
   label: string;
   path?: string;
 }
 
-interface BreadcrumbsProps {
-  breadcrumbs: Breadcrumb[];
+export interface BreadcrumbsProps {
+  breadcrumbs: BreadcrumbItem[];
 }
 
-export default function Breadcrumbs({ breadcrumbs }: BreadcrumbsProps) {
+function Breadcrumbs({ breadcrumbs }: BreadcrumbsProps) {
   return (
-    <nav className="flex items-center text-base font-normal text-grey-4 space-x-1">
+    <nav aria-label="Breadcrumb" className="flex items-center text-base font-normal text-grey-4 space-x-1">
       {breadcrumbs.map(({ label, path }, index) => {
-        const isFirst = index === 0;
         const isLast = index === breadcrumbs.length - 1;
 
         return (
@@ -27,17 +27,14 @@ export default function Breadcrumbs({ breadcrumbs }: BreadcrumbsProps) {
               />
             )}
 
-            {isFirst && path ? (
-              <Link
-                href={path}
-                className="text-grey-4 font-medium hover:text-primary/90"
-              >
-                {label}
+            {isLast ? (
+              <Typography className="grey-5 font-semibold">{label}</Typography>
+            ) : path ? (
+              <Link href={path}>
+                <Typography className="grey-4 hover:text-primary/90">{label}</Typography>
               </Link>
-            ) : isLast ? (
-              <span className="font-bold text-grey-5">{label}</span>
             ) : (
-              <span className="font-medium text-grey-4">{label}</span>
+              <Typography className="grey-4">{label}</Typography>
             )}
           </div>
         );
@@ -45,3 +42,5 @@ export default function Breadcrumbs({ breadcrumbs }: BreadcrumbsProps) {
     </nav>
   );
 }
+
+export { Breadcrumbs };
