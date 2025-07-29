@@ -1,4 +1,4 @@
-import { Typography } from "@/registry/ui"
+import { Typography } from "@/registry/ui/typography"
 import { CodeBlock } from "@/components/code-block"
 import { InlineCode } from "@/components/code-block"
 import { LIB_NAME } from "@/lib/constants"

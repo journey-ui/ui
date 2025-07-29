@@ -1,4 +1,5 @@
-import { Button, Typography } from "@/registry/ui";
+import { Button } from "@/registry/ui/button";
+import { Typography } from "@/registry/ui/typography";
 import { CodeBlock } from "@/components/code-block";
 import { InlineCode } from "@/components/code-block";
 import { Info, AlertCircle, HelpCircle, Check, X } from "lucide-react";

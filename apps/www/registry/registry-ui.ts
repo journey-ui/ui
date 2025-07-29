@@ -48,4 +48,16 @@ export const ui: Registry["items"] = [
       },
     ],
   },
-];
+  {
+    name: "breadcrumbs",
+    type: "registry:ui",
+    dependencies: ["@untitled-ui/icons-react"],
+    registryDependencies: ["typography"],
+    files: [
+      {
+        path: "ui/breadcrumbs.tsx",
+        type: "registry:ui",
+      },
+    ],
+  },
+]

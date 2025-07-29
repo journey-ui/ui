@@ -1,9 +1,9 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useMemo } from "react"
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter"
 import { oneLight } from "react-syntax-highlighter/dist/esm/styles/prism"
-import { Copy, Check, Terminal, FileText } from "lucide-react"
+import { Copy, Check, Terminal, FileText, ChevronDown, ChevronUp } from "lucide-react"
 import { cn } from "@/lib/utils"
 
 interface CodeBlockProps {
@@ -14,6 +14,7 @@ interface CodeBlockProps {
   className?: string
   showLineNumbers?: boolean
   highlightLines?: number[]
+  expandable?: number // Nova prop para funcionalidade de expansão
 }
 
 export function CodeBlock({
@@ -23,9 +24,36 @@ export function CodeBlock({
   title,
   className,
   showLineNumbers = false,
-  highlightLines = []
+  highlightLines = [],
+  expandable
 }: CodeBlockProps) {
   const [copied, setCopied] = useState(false)
+  const [isExpanded, setIsExpanded] = useState(false)
+
+  // Processar o código para expansão
+  const { displayCode, totalLines, shouldShowExpandButton } = useMemo(() => {
+    const lines = children.trim().split('\n')
+    const totalLines = lines.length
+    
+    if (!expandable || totalLines <= expandable) {
+      return {
+        displayCode: children.trim(),
+        totalLines,
+        shouldShowExpandButton: false
+      }
+    }
+
+    const shouldShowExpandButton = totalLines > expandable
+    const displayCode = isExpanded 
+      ? children.trim()
+      : lines.slice(0, expandable).join('\n')
+
+    return {
+      displayCode,
+      totalLines,
+      shouldShowExpandButton
+    }
+  }, [children, expandable, isExpanded])
 
   const copyToClipboard = async () => {
     try {
@@ -35,6 +63,10 @@ export function CodeBlock({
     } catch (err) {
       console.error("Failed to copy:", err)
     }
+  }
+
+  const toggleExpansion = () => {
+    setIsExpanded(!isExpanded)
   }
 
   const getIcon = () => {
@@ -95,6 +127,12 @@ export function CodeBlock({
               ({getLanguageLabel()})
             </span>
           )}
+          {/* Indicador de linhas quando expandable */}
+          {expandable && (
+            <span className="text-xs text-slate-500 bg-slate-100 px-2 py-1 rounded">
+              {isExpanded ? `${totalLines} linhas` : `${expandable}/${totalLines} linhas`}
+            </span>
+          )}
         </div>
         
         <button
@@ -123,42 +161,75 @@ export function CodeBlock({
       </div>
 
       {/* Code Content */}
-      <div className="relative overflow-x-auto">
-        <SyntaxHighlighter
-          language={language}
-          style={customStyle}
-          showLineNumbers={showLineNumbers}
-          lineNumberStyle={{
-            minWidth: "3em",
-            paddingRight: "1em",
-            color: "#94a3b8",
-            borderRight: "1px solid #e2e8f0",
-            marginRight: "1em"
-          }}
-          wrapLines={highlightLines.length > 0}
-          lineProps={(lineNumber) => {
-            const isHighlighted = highlightLines.includes(lineNumber)
-            return {
-              style: {
-                backgroundColor: isHighlighted 
-                  ? "#fef3c7"
-                  : "transparent",
-                display: "block",
-                width: "100%"
+      <div className="relative">
+        <div className="overflow-x-auto">
+          <SyntaxHighlighter
+            language={language}
+            style={customStyle}
+            showLineNumbers={showLineNumbers}
+            lineNumberStyle={{
+              minWidth: "3em",
+              paddingRight: "1em",
+              color: "#94a3b8",
+              borderRight: "1px solid #e2e8f0",
+              marginRight: "1em"
+            }}
+            wrapLines={highlightLines.length > 0}
+            lineProps={(lineNumber) => {
+              const isHighlighted = highlightLines.includes(lineNumber)
+              return {
+                style: {
+                  backgroundColor: isHighlighted 
+                    ? "#fef3c7"
+                    : "transparent",
+                  display: "block",
+                  width: "100%"
+                }
               }
-            }
-          }}
-          customStyle={{
-            margin: 0,
-            padding: "1rem",
-            background: "#ffffff",
-            fontSize: "0.875rem",
-            lineHeight: "1.5"
-          }}
-        >
-          {children.trim()}
-        </SyntaxHighlighter>
+            }}
+            customStyle={{
+              margin: 0,
+              padding: "1rem",
+              background: "#ffffff",
+              fontSize: "0.875rem",
+              lineHeight: "1.5"
+            }}ß
+          >
+            {displayCode}
+          </SyntaxHighlighter>
+        </div>
+
+        {/* Gradiente de fade quando não expandido */}
+        {shouldShowExpandButton && !isExpanded && (
+          <div className="absolute bottom-0 left-0 right-0 h-8 bg-gradient-to-t from-white to-transparent pointer-events-none" />
+        )}
       </div>
+
+      {/* Botão de expansão */}
+      {shouldShowExpandButton && (
+        <div className="border-t border-slate-200 bg-slate-50">
+          <button
+            onClick={toggleExpansion}
+            className={cn(
+              "w-full flex items-center justify-center gap-2 px-4 py-3",
+              "text-sm font-medium text-slate-600 hover:text-slate-900",
+              "hover:bg-slate-100 transition-colors duration-200"
+            )}
+          >
+            {isExpanded ? (
+              <>
+                <ChevronUp className="w-4 h-4" />
+                Mostrar menos ({expandable} linhas)
+              </>
+            ) : (
+              <>
+                <ChevronDown className="w-4 h-4" />
+                Mostrar mais (+{totalLines - (expandable || 0)} linhas)
+              </>
+            )}
+          </button>
+        </div>
+      )}
     </div>
   )
 }

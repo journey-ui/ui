@@ -74,6 +74,37 @@
       ]
     },
     {
+      "name": "breadcrumbs",
+      "type": "registry:ui",
+      "dependencies": [
+        "@untitled-ui/icons-react"
+      ],
+      "registryDependencies": [
+        "typography"
+      ],
+      "files": [
+        {
+          "path": "ui/breadcrumbs.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "header",
+      "type": "registry:block",
+      "dependencies": [],
+      "registryDependencies": [
+        "breadcrumbs",
+        "typography"
+      ],
+      "files": [
+        {
+          "path": "blocks/header.tsx",
+          "type": "registry:block"
+        }
+      ]
+    },
+    {
       "name": "postcss-config",
       "type": "registry:init",
       "files": [

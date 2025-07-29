@@ -1,4 +1,4 @@
-import { Button, Typography } from "@/registry/ui";
+import { Typography } from "@/registry/ui/typography";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 

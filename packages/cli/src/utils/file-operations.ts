@@ -102,6 +102,7 @@ function resolveTargetFilePath(cwd: string, file: { target?: string, type: strin
   const resolvedTargetPaths: Record<string, string> = {
     'registry:ui': journeyUiConfig.aliases.ui,
     'registry:lib': journeyUiConfig.aliases.lib,
+    'registry:block': journeyUiConfig.aliases.blocks,
   }
 
   const targetDirByType = resolvedTargetPaths[file.type]
@@ -116,6 +117,7 @@ function resolveImportsByAliases(content: string, journeyUiConfig: JourneyUiConf
   const aliases: Record<string, string> = {
     '@/registry/lib/utils': journeyUiConfig.aliases.utils,
     '@/registry/ui': journeyUiConfig.aliases.ui,
+    '@/registry/blocks': journeyUiConfig.aliases.blocks,
   }
 
   for (const alias in aliases) {
