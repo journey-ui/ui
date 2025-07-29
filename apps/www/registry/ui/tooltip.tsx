@@ -17,13 +17,25 @@ const tooltipVariants = cva(
     },
   }
 );
+
+const tooltipArrowVariants = cva("", {
+  variants: {
+    variant: {
+      light: "fill-[#EEEEEE]",
+      dark: "fill-gray-800",
+    },
+  },
+  defaultVariants: {
+    variant: "light",
+  },
+});
+
 export interface TooltipContentProps extends
   React.ComponentPropsWithoutRef<typeof TooltipPrimitive.Content>,
   VariantProps<typeof tooltipVariants>
 {}
 
 const TooltipProvider = TooltipPrimitive.Provider;
-
 
 const TooltipContent = React.forwardRef<
   React.ComponentRef<typeof TooltipPrimitive.Content>,
@@ -37,7 +49,14 @@ const TooltipContent = React.forwardRef<
       className
     )}
     {...props}
-  />
+  >
+    {props.children}
+    <TooltipPrimitive.Arrow
+      width={11}
+      height={5}
+      className={cn(tooltipArrowVariants({ variant }))}
+    />
+  </TooltipPrimitive.Content>
 ));
 TooltipContent.displayName = TooltipPrimitive.Content.displayName;
 
