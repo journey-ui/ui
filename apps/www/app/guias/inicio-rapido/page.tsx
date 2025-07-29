@@ -1,4 +1,4 @@
-import { Typography } from "@/registry/ui"
+import { Typography } from "@/registry/ui/typography"
 import { TerminalBlock } from "@/components/terminal-block"
 import { LIB_NAME } from "@/lib/constants"
 
