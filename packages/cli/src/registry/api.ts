@@ -3,7 +3,7 @@ import path from 'path'
 import { logger } from '../utils/logger'
 import { Registry, RegistryItem } from './schema'
 
-const REGISTRY_URL = 'https://raw.githubusercontent.com/journey-ui/ui/main/apps/www/public/r'
+const REGISTRY_URL = 'https://journey-ui.vercel.app/r'
 
 export async function fetchRegistry(): Promise<Registry> {
   try {

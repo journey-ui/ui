@@ -1,6 +1,6 @@
 {
   "name": "@journey-ui/cli",
-  "version": "0.0.8",
+  "version": "0.0.10",
   "description": "CLI for adding Journey UI components to your project",
   "type": "commonjs",
   "bin": {

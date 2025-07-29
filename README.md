@@ -27,3 +27,9 @@ npx @journey-ui/cli@latest add form
 - npm: https://www.npmjs.com/package/@journey-ui/cli
 - github: https://github.com/journey-ui/ui
 - guia de estilos do journey-ui: https://www.figma.com/design/cwJTav9XGFmfxVAHpf8eb8/JOURNEY---STYLE-GUIDE
+
+# Update lib
+
+- npm run build
+- npm version patch
+- npm publish --access public

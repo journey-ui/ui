@@ -58,14 +58,14 @@ export function Sidebar() {
 
   return (
     <div className="w-56 flex-shrink-0 h-full overflow-y-auto py-8 space-y-8">
-      {navigations.map((navigation) => (
-        <div className="flex flex-col gap-2 mr-16">
+      {navigations.map((navigation, index) => (
+        <div key={index} className="flex flex-col gap-2 mr-16">
           <Typography variant="p1b" className="leading-none px-2">{navigation.label}</Typography>
 
           <nav>
             <ul>
-              {navigation.items.sort((a, b) => a.label.localeCompare(b.label)).map((item) => (
-                <li>
+              {navigation.items.sort((a, b) => a.label.localeCompare(b.label)).map((item, indexItem) => (
+                <li key={indexItem}>
                   <LinkSidebar
                     href={item.href}
                     label={item.label}

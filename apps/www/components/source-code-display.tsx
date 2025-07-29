@@ -18,7 +18,7 @@ export async function SourceCodeDisplay({
   try {
     const fullPath = path.join(process.cwd(), filePath)
     sourceCode = await fs.promises.readFile(fullPath, 'utf-8')
-  } catch (error) {
+  } catch (_) {
     sourceCode = `// Erro ao carregar arquivo: ${filePath}`
   }
 

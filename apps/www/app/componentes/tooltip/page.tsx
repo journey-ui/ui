@@ -2,7 +2,7 @@ import { Button } from "@/registry/ui/button";
 import { Typography } from "@/registry/ui/typography";
 import { CodeBlock } from "@/components/code-block";
 import { InlineCode } from "@/components/code-block";
-import { Info, AlertCircle, HelpCircle, Check, X } from "lucide-react";
+import { Info, AlertCircle, HelpCircle, Check } from "lucide-react";
 import { LIB_NAME } from "@/lib/constants";
 import { Tooltip } from "@/registry/ui/tooltip";
 import { SourceCodeDisplay } from "@/components/source-code-display";
