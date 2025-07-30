@@ -7,7 +7,6 @@ import { SourceCodeDisplay } from "@/components/source-code-display";
 export default function HeaderPage() {
   return (
     <div className="container mx-auto px-4 py-8 max-w-6xl">
-
       {/* Introdução */}
       <div className="mb-12">
         <Typography variant="h1" className="mb-4">
