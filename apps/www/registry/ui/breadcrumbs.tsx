@@ -13,28 +13,29 @@ export interface BreadcrumbsProps {
 
 function Breadcrumbs({ breadcrumbs }: BreadcrumbsProps) {
   return (
-    <nav aria-label="Breadcrumb" className="flex items-center text-base font-normal text-grey-4 space-x-1">
+    <nav aria-label="Breadcrumb" className="flex items-center text-base font-normal text-grey-4 space-x-0.5">
       {breadcrumbs.map(({ label, path }, index) => {
         const isLast = index === breadcrumbs.length - 1;
 
         return (
-          <div key={index} className="flex items-center space-x-1">
+          <div key={index} className="flex items-center space-x-0.5">
             {index > 0 && (
               <ChevronRight
-                height={16}
+                width={24}
+                height={24}
                 aria-label="Separador de breadcrumb"
-                className="text-status-info"
+                className="text-primary"
               />
             )}
 
             {isLast ? (
-              <Typography className="grey-5 font-semibold">{label}</Typography>
+              <Typography variant="s3" className="text-grey">{label}</Typography>
             ) : path ? (
               <Link href={path}>
-                <Typography className="grey-4 hover:text-primary/90">{label}</Typography>
+                <Typography className="text-grey-5 hover:text-primary">{label}</Typography>
               </Link>
             ) : (
-              <Typography className="grey-4">{label}</Typography>
+              <Typography className="text-grey-5">{label}</Typography>
             )}
           </div>
         );
