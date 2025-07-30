@@ -152,6 +152,18 @@ export function ExemploBasico() {
               <Typography variant="s2">Subtitle 2</Typography>
               <InlineCode>variant="s2"</InlineCode>
             </div>
+            <div>
+              <Typography variant="s3">Subtitle 3</Typography>
+              <InlineCode>variant="s3"</InlineCode>
+            </div>
+            <div>
+              <Typography variant="s4">Subtitle 4</Typography>
+              <InlineCode>variant="s4"</InlineCode>
+            </div>
+            <div>
+              <Typography variant="s5">Subtitle 5 - Uso exclusivo para Badge</Typography>
+              <InlineCode>variant="s5"</InlineCode>
+            </div>
           </div>
         </div>
 

@@ -42,8 +42,6 @@ const ButtonIcon = React.forwardRef<HTMLSpanElement, ButtonIconProps>(
 )
 ButtonIcon.displayName = "ButtonIcon"
 
-const buttonBase = "uppercase rounded-full inline-flex items-center justify-center gap-2 whitespace-nowrap transition-colors [&_svg]:pointer-events-none cursor-pointer disabled:cursor-not-allowed"
-
 const buttonVariantClasses = {
   primary: "bg-primary text-white hover:bg-primary-3 disabled:bg-grey-3",
   secondary: "bg-transparent text-primary border border-primary hover:text-primary-3 hover:border-primary-3 disabled:text-grey-3 disabled:border-grey-3",
@@ -99,11 +97,10 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     return (
       <Comp
         className={cn(
-          buttonBase,
+          "rounded-full inline-flex items-center justify-center gap-2 whitespace-nowrap transition-colors [&_svg]:pointer-events-none cursor-pointer disabled:cursor-not-allowed",
           buttonVariantClasses[variant],
           buttonSizeClasses[size],
           typographyClasses,
-          "font-extrabold",
           iconButtonSize ? `${iconButtonSize} px-0 py-0` : "",
           className
         )}

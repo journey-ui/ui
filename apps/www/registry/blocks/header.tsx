@@ -48,7 +48,7 @@ const Header = ({ title, breadcrumbs, description, rightImagePath }: HeaderProps
           </Typography>
           
           {description && (
-            <Typography as="p" variant="s2" className="text-sm leading-none font-semibold text-grey-4">
+            <Typography as="p" variant="s2" className="text-sm leading-none font-semibold text-grey-5">
               {description}
             </Typography>
           )}

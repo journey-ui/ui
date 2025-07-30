@@ -51,6 +51,10 @@ export function Sidebar() {
         {
           label: "Breadcrumbs",
           href: "/componentes/breadcrumbs"
+        },
+        {
+          label: "Dropdown",
+          href: "/componentes/dropdown"
         }
       ]
     }
