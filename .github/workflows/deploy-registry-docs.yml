@@ -77,6 +77,16 @@ jobs:
         working-directory: apps/www
         run: |
           echo "🏗️ Building project for Vercel..."
+          # Criar vercel.json forçando NPM
+          cat > vercel.json << EOF
+          {
+            "installCommand": "npm ci",
+            "buildCommand": "npm run build",
+            "framework": "nextjs"
+          }
+          EOF
+          # Remover yarn.lock se existir
+          rm -f yarn.lock
           vercel build ${{ github.ref == 'refs/heads/main' && '--prod' || '' }} --token=${{ secrets.VERCEL_TOKEN }}
           echo "✅ Project build completed"
 
