@@ -64,14 +64,17 @@ jobs:
 
       # ETAPA 2: Deploy na Vercel
       - name: Install Vercel CLI
+        working-directory: apps/www
         run: npm install --global vercel@latest
 
       - name: Pull Vercel Environment Information
+        working-directory: apps/www
         run: |
           echo "🔧 Setting up Vercel environment..."
           vercel pull --yes --environment=${{ github.ref == 'refs/heads/main' && 'production' || 'preview' }} --token=${{ secrets.VERCEL_TOKEN }}
 
       - name: 🏗️ Build Project Artifacts
+        working-directory: apps/www
         run: |
           echo "🏗️ Building project for Vercel..."
           vercel build ${{ github.ref == 'refs/heads/main' && '--prod' || '' }} --token=${{ secrets.VERCEL_TOKEN }}
@@ -79,6 +82,7 @@ jobs:
 
       - name: 🚀 Deploy to Vercel
         id: deploy
+        working-directory: apps/www
         run: |
           echo "🚀 Deploying to Vercel..."
           if [[ "${{ github.ref }}" == "refs/heads/main" ]]; then
