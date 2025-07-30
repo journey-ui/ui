@@ -60,4 +60,16 @@ export const ui: Registry["items"] = [
       },
     ],
   },
+  {
+    name: "dropdown",
+    type: "registry:ui",
+    dependencies: ["@radix-ui/react-select", "@untitled-ui/icons-react"],
+    registryDependencies: ["typography"],
+    files: [
+      {
+        path: "ui/dropdown.tsx",
+        type: "registry:ui",
+      },
+    ],
+  },
 ]
