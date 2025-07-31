@@ -175,14 +175,14 @@ export function ExemploBasico() {
           <div className="p-6 bg-slate-50 rounded-lg border">
             <div className="flex gap-6 flex-wrap items-center">
               <Tooltip content="Informação adicional">
-                <Button iconOnly={<Info />} variant="tertiary" size="xsmall" />
+                <Button iconOnly={<Info />} variant="tertiary" size="small" />
               </Tooltip>
 
               <Tooltip content="Aviso importante" variant="dark">
                 <Button
                   iconOnly={<AlertCircle />}
                   variant="tertiary"
-                  size="xsmall"
+                  size="small"
                   className="text-yellow-500"
                 />
               </Tooltip>
@@ -191,7 +191,7 @@ export function ExemploBasico() {
                 <Button
                   iconOnly={<HelpCircle />}
                   variant="tertiary"
-                  size="xsmall"
+                  size="small"
                   className="text-gray-500"
                 />
               </Tooltip>
@@ -203,14 +203,14 @@ export function ExemploBasico() {
 import { Tooltip } from "@/components/ui/tooltip"
 
 <Tooltip content="Informação adicional">
-    <Button iconOnly={<Info />} variant="tertiary" size="xsmall" />
+    <Button iconOnly={<Info />} variant="tertiary" size="small" />
 </Tooltip>
 
 <Tooltip content="Aviso importante" variant="dark">
     <Button
         iconOnly={<AlertCircle />}
         variant="tertiary"
-        size="xsmall"
+        size="small"
         className="text-yellow-500"
     />
 </Tooltip>
@@ -219,7 +219,7 @@ import { Tooltip } from "@/components/ui/tooltip"
     <Button
         iconOnly={<HelpCircle />}
         variant="tertiary"
-        size="xsmall"
+        size="small"
         className="text-gray-500"
     />
 </Tooltip>`}
