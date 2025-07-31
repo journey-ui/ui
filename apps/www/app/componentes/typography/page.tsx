@@ -178,24 +178,36 @@ export function ExemploBasico() {
               <InlineCode>variant="p1"</InlineCode>
             </div>
             <div>
-              <Typography variant="p1b">Paragraph 1 Bold - texto em negrito</Typography>
+              <Typography variant="p1b">Paragraph 1 Bold - texto com peso 700</Typography>
               <InlineCode>variant="p1b"</InlineCode>
+            </div>
+            <div>
+              <Typography variant="p1bb">Paragraph 1 Black - texto com peso 900</Typography>
+              <InlineCode>variant="p1bb"</InlineCode>
             </div>
             <div>
               <Typography variant="p2">Paragraph 2 - texto menor</Typography>
               <InlineCode>variant="p2"</InlineCode>
             </div>
             <div>
-              <Typography variant="p2b">Paragraph 2 Bold - texto menor em negrito</Typography>
+              <Typography variant="p2b">Paragraph 2 Bold - texto com peso 700</Typography>
               <InlineCode>variant="p2b"</InlineCode>
+            </div>
+            <div>
+              <Typography variant="p2bb">Paragraph 2 Black - texto com peso 900</Typography>
+              <InlineCode>variant="p2bb"</InlineCode>
             </div>
             <div>
               <Typography variant="p3">Paragraph 3 - texto pequeno</Typography>
               <InlineCode>variant="p3"</InlineCode>
             </div>
             <div>
-              <Typography variant="p3b">Paragraph 3 Bold - texto pequeno em negrito</Typography>
+              <Typography variant="p3b">Paragraph 3 Bold - texto pequeno com peso 700</Typography>
               <InlineCode>variant="p3b"</InlineCode>
+            </div>
+            <div>
+              <Typography variant="p3bb">Paragraph 3 Black - texto pequeno com peso 900</Typography>
+              <InlineCode>variant="p3bb"</InlineCode>
             </div>
           </div>
         </div>

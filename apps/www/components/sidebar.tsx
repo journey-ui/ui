@@ -55,6 +55,14 @@ export function Sidebar() {
         {
           label: "Dropdown",
           href: "/componentes/dropdown"
+        },
+        {
+          label: "Dropdown menu",
+          href: "/componentes/dropdown-menu"
+        },
+        {
+          label: "Checkbox",
+          href: "/componentes/checkbox"
         }
       ]
     }
@@ -92,7 +100,7 @@ interface LinkSidebarProps {
 function LinkSidebar({ href, label }: LinkSidebarProps) {
   return (
     <Link href={href}>
-      <Typography variant="p2" className="leading-none w-min whitespace-nowrap p-2 rounded-md hover:bg-grey-2">{label}</Typography>
+      <Typography variant="p2" className="leading-none w-min whitespace-nowrap p-2 rounded-md hover:bg-grey-3">{label}</Typography>
     </Link>
   )
 }
