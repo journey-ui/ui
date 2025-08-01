@@ -53,6 +53,10 @@ export function Sidebar() {
           href: "/componentes/breadcrumbs"
         },
         {
+          label: "File Uploader",
+          href: "/componentes/file-uploader"
+        },
+        {
           label: "Dropdown",
           href: "/componentes/dropdown"
         }
