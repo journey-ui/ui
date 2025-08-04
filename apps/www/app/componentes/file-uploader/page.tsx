@@ -52,7 +52,6 @@ export default function FileUploaderPage() {
           <SourceCodeDisplay
             filePath="registry/ui/file-uploader.tsx"
             title="file-uploader.tsx"
-            language="tsx"
           />
         </div>
       </section>
