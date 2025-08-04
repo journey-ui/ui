@@ -30,7 +30,7 @@ const FileUploader = ({
 
   const validateFile = (selectedFile: File): string | null => {
     const fileExtension =
-      "." + selectedFile.name.split(".").pop()?.toLowerCase();
+      "." + (selectedFile.name.split(".").pop()?.toLowerCase() || "");
     if (!accept.includes(fileExtension)) {
       return `O arquivo enviado não é compatível ou possui algum erro.\nTente novamente e lembre-se de enviar arquivo no formato ${accept}.`;
     }
@@ -97,7 +97,7 @@ const FileUploader = ({
         aria-label="Selecionar arquivo para upload"
         className={cn(
           "relative rounded-lg border-2 border-dashed p-6 min-h-[140px] flex flex-col items-center justify-center transition-all duration-200 cursor-pointer",
-          status === "idle" && "border-status-info hover:cursor-pointer",
+          status === "idle" && "border-status-info",
           status === "error" && "border-status-negative",
           status === "success" && "border-status-positive",
           isDragOver && "border-status-info scale-[1.02]",
@@ -171,9 +171,9 @@ const FileUploader = ({
               variant="s2"
               className="text-status-negative text-sm font-semibold leading-relaxed max-w-md"
             >
-              {errorMessage.split("\n").map((line, index) => (
-                <div key={index}>
-                  {index === 0 ? (
+              {errorMessage.split("\n").map((line) => (
+                <div key={line}>
+                  {line === errorMessage.split("\n")[0] ? (
                     <span className="font-bold">{line}</span>
                   ) : (
                     line
