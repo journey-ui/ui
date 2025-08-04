@@ -121,22 +121,6 @@
       ]
     },
     {
-      "name": "checkbox",
-      "type": "registry:ui",
-      "dependencies": [
-        "@radix-ui/react-checkbox"
-      ],
-      "registryDependencies": [
-        "typography"
-      ],
-      "files": [
-        {
-          "path": "ui/checkbox.tsx",
-          "type": "registry:ui"
-        }
-      ]
-    },
-    {
       "name": "file-uploader",
       "type": "registry:ui",
       "dependencies": [
@@ -148,6 +132,22 @@
       "files": [
         {
           "path": "ui/file-uploader.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "checkbox",
+      "type": "registry:ui",
+      "dependencies": [
+        "@radix-ui/react-checkbox"
+      ],
+      "registryDependencies": [
+        "typography"
+      ],
+      "files": [
+        {
+          "path": "ui/checkbox.tsx",
           "type": "registry:ui"
         }
       ]

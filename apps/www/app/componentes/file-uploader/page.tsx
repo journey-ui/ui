@@ -1,12 +1,11 @@
 "use client";
 
 import { Typography } from "@/registry/ui";
-import { FileUploader } from "@/registry/ui/file-uploader";
-import { CodeBlock } from "@/components/code-block";
-import { InlineCode } from "@/components/code-block";
+import { CodeBlock, InlineCode } from "@/components/code-block";
 import { LIB_NAME } from "@/lib/constants";
 import { CheckCircle, CircleXIcon, Upload } from "lucide-react";
 import { SourceCodeDisplay } from "@/components/source-code-display";
+import { FileUploader } from "@/registry/ui/file-uploader";
 
 export default function FileUploaderPage() {
   const handleFileSelect = (file: File) => {

@@ -1,4 +1,4 @@
-"use client";
+"use client"
 
 import { ChangeEvent, useRef, useState, DragEvent } from "react";
 import { CheckCircle, CircleXIcon, Upload } from "lucide-react";
