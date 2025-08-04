@@ -83,6 +83,18 @@ export const ui: Registry["items"] = [
       },
     ],
   },
+    {
+    name: "file-uploader",
+    type: "registry:ui",
+    dependencies: ["lucide-react"],
+    registryDependencies: ["typography"],
+    files: [
+      {
+        path: "ui/file-uploader.tsx",
+        type: "registry:ui",
+      },
+    ],
+  },
   {
     name: "checkbox",
     type: "registry:ui",
