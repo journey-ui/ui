@@ -3,7 +3,7 @@
 import { ChangeEvent, useRef, useState, DragEvent } from "react";
 import { CheckCircle, CircleXIcon, Upload } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { Typography } from "./typography";
+import { Typography } from "@/registry/ui/typography";
 
 type UploadStatus = "idle" | "success" | "error";
 
