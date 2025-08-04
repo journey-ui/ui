@@ -73,6 +73,17 @@ export const ui: Registry["items"] = [
     ],
   },
   {
+    name: "dropdown-menu",
+    type: "registry:ui",
+    dependencies: ["@radix-ui/react-dropdown-menu", "lucide-react"],
+    files: [
+      {
+        path: "ui/dropdown-menu.tsx",
+        type: "registry:ui",
+      },
+    ],
+  },
+    {
     name: "file-uploader",
     type: "registry:ui",
     dependencies: ["lucide-react"],
@@ -84,4 +95,16 @@ export const ui: Registry["items"] = [
       },
     ],
   },
+  {
+    name: "checkbox",
+    type: "registry:ui",
+    dependencies: ["@radix-ui/react-checkbox"],
+    registryDependencies: ["typography"],
+    files: [
+      {
+        path: "ui/checkbox.tsx",
+        type: "registry:ui",
+      },
+    ],
+  } 
 ]

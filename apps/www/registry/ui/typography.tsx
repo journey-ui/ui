@@ -32,10 +32,13 @@ const typographyVariants = cva(
         // Paragraph
         p1: "text-[16px] leading-[24px] font-normal",
         p1b: "text-[16px] leading-[24px] font-bold",
+        p1bb: "text-[16px] leading-[24px] font-black",
         p2: "text-[14px] leading-[22px] font-normal",
         p2b: "text-[14px] leading-[22px] font-bold",
+        p2bb: "text-[14px] leading-[22px] font-black",
         p3: "text-[12px] leading-[20px] font-normal",
         p3b: "text-[12px] leading-[20px] font-bold",
+        p3bb: "text-[12px] leading-[20px] font-black",
         
         // Caption
         c1: "text-[10px] leading-auto font-semibold",
