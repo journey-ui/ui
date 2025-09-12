@@ -40,7 +40,6 @@ export default function InputPage() {
         </div>
       </section>
 
-      {/* Exemplos de uso */}
       <section className="mb-12">
         <Typography variant="h2" className="mb-6">
           Exemplos de uso
@@ -48,20 +47,17 @@ export default function InputPage() {
 
         <div className="space-y-4">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {/* Default Search */}
             <div>
               <Typography variant="h3" className="mb-2">
-                Default Search
+                Campo de busca padrão
               </Typography>
               <div className="space-y-4">
-                {/* Default */}
                 <Input placeholder="Buscar" className="pl-8" />
               </div>
             </div>
-            {/* Focused Search */}
             <div>
               <Typography variant="h3" className="mb-2">
-                Focused Search
+                Campo de busca com foco
               </Typography>
               <div className="space-y-4">
                 <Input
@@ -70,28 +66,25 @@ export default function InputPage() {
                 />
               </div>
             </div>
-            {/* With Close Button Search */}
             <div>
               <Typography variant="h3" className="mb-2">
-                With Close Button Search
+                Campo de busca com botão de fechar
               </Typography>
               <div className="space-y-4">
                 <Input value="Buscar" className="pl-11 border-blue-400" />
               </div>
             </div>
-            {/* Disabled Search */}
             <div>
               <Typography variant="h3" className="mb-2">
-                Disabled Search
+                Campo de busca desabilitado
               </Typography>
               <div className="space-y-4">
                 <Input placeholder="Buscar" disabled className="pl-11" />
               </div>
             </div>
-            {/* with Error Search */}
             <div>
               <Typography variant="h3" className="mb-2">
-                With Error Search
+                Campo de busca com erro
               </Typography>
               <div className="space-y-4">
                 <Input placeholder="Buscar" className="pl-11 border-red-400" />
@@ -127,30 +120,73 @@ export default function InputPage() {
             <tbody>
               <tr>
                 <td className="border border-slate-200 px-4 py-3">
-                  <InlineCode>variant</InlineCode>
+                  <InlineCode>icon</InlineCode>
                 </td>
                 <td className="border border-slate-200 px-4 py-3">
-                  <code>string</code>
+                  <code>React.JSX.Element</code>
                 </td>
                 <td className="border border-slate-200 px-4 py-3">
-                  <InlineCode>info</InlineCode>
+                  -
                 </td>
                 <td className="border border-slate-200 px-4 py-3">
-                  Cor do badge.
+                  Ícone exibido à esquerda do campo de input.
                 </td>
               </tr>
               <tr>
                 <td className="border border-slate-200 px-4 py-3">
-                  <InlineCode>size</InlineCode>
+                  <InlineCode>inputClassName</InlineCode>
                 </td>
                 <td className="border border-slate-200 px-4 py-3">
                   <code>string</code>
                 </td>
                 <td className="border border-slate-200 px-4 py-3">
-                  <InlineCode>medium</InlineCode>
+                  -
                 </td>
                 <td className="border border-slate-200 px-4 py-3">
-                  Tamanho do badge.
+                  Classe CSS adicional aplicada diretamente ao
+                  <InlineCode>input</InlineCode>.
+                </td>
+              </tr>
+              <tr>
+                <td className="border border-slate-200 px-4 py-3">
+                  <InlineCode>placeholder</InlineCode>
+                </td>
+                <td className="border border-slate-200 px-4 py-3">
+                  <code>string</code>
+                </td>
+                <td className="border border-slate-200 px-4 py-3">
+                  <InlineCode>"Pesquise por Documento, TOTVS Code, Nome do Cliente"</InlineCode>
+                </td>
+                <td className="border border-slate-200 px-4 py-3">
+                  Texto exibido quando o campo está vazio.
+                </td>
+              </tr>
+              <tr>
+                <td className="border border-slate-200 px-4 py-3">
+                  <InlineCode>showClearButton</InlineCode>
+                </td>
+                <td className="border border-slate-200 px-4 py-3">
+                  <code>boolean</code>
+                </td>
+                <td className="border border-slate-200 px-4 py-3">
+                  <InlineCode>true</InlineCode>
+                </td>
+                <td className="border border-slate-200 px-4 py-3">
+                  Exibe o botão de limpar quando há valor no campo.
+                </td>
+              </tr>
+              <tr>
+                <td className="border border-slate-200 px-4 py-3">
+                  <InlineCode>onClickClearButton</InlineCode>
+                </td>
+                <td className="border border-slate-200 px-4 py-3">
+                  <code>() =&gt; void</code>
+                </td>
+                <td className="border border-slate-200 px-4 py-3">
+                  -
+                </td>
+                <td className="border border-slate-200 px-4 py-3">
+                  Função chamada ao clicar no botão de limpar.
                 </td>
               </tr>
             </tbody>
