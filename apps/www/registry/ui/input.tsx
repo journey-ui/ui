@@ -5,7 +5,6 @@ import { cn } from "@/lib/utils";
 export interface InputProps
   extends React.InputHTMLAttributes<HTMLInputElement> {
   icon?: React.JSX.Element;
-  rightElement?: React.ReactNode;
   inputClassName?: string;
   placeholder?: string;
   showClearButton?: boolean;
@@ -18,7 +17,6 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
       className,
       type,
       icon,
-      rightElement,
       placeholder,
       value,
       inputClassName,
