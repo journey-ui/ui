@@ -24,6 +24,10 @@ export function Sidebar() {
       label: "Blocos",
       items: [
         {
+          label: "Filter Display",
+          href: "/blocks/filter-display"
+        },
+        {
           label: "Header",
           href: "/blocks/header",
         },
@@ -71,6 +75,10 @@ export function Sidebar() {
         {
           label: "Dialog",
           href: "/componentes/dialog",
+        },
+        {
+          label: "Input",
+          href: "/componentes/input",
         },
       ],
     },
