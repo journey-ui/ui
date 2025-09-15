@@ -57,7 +57,8 @@ export default function FilterDisplayPage() {
           Filtragem aplicada
         </Typography>
         <Typography variant="s3" className="mb-4">
-          Quando há filtros aplicados, o componente aparece com a marcação da filtragem, quando não há, ele não é exibido.
+          Quando há filtros aplicados, o componente aparece com a marcação da
+          filtragem, quando não há, ele não é exibido.
         </Typography>
 
         <div className="my-6">
@@ -99,7 +100,7 @@ export default function FilterDisplayPage() {
           <tbody>
             <tr>
               <td className="border border-slate-200 px-4 py-3">
-                <InlineCode>title</InlineCode>
+                <InlineCode>filterKey</InlineCode>
               </td>
               <td className="border border-slate-200 px-4 py-3">
                 <Typography variant="p2">string</Typography>
@@ -108,40 +109,61 @@ export default function FilterDisplayPage() {
                 <Typography variant="p2">Obrigatório</Typography>
               </td>
               <td className="border border-slate-200 px-4 py-3">
-                <Typography variant="p2">Título principal da página</Typography>
-              </td>
-            </tr>
-            <tr>
-              <td className="border border-slate-200 px-4 py-3">
-                <InlineCode>description</InlineCode>
-              </td>
-              <td className="border border-slate-200 px-4 py-3">
-                <Typography variant="p2">string</Typography>
-              </td>
-              <td className="border border-slate-200 px-4 py-3">
-                <Typography variant="p2">Opcional</Typography>
-              </td>
-              <td className="border border-slate-200 px-4 py-3">
                 <Typography variant="p2">
-                  Subtítulo ou descrição da página
+                  Chave do filtro, usada para identificar o grupo de filtros
+                  aplicados.
                 </Typography>
               </td>
             </tr>
             <tr>
               <td className="border border-slate-200 px-4 py-3">
-                <InlineCode>breadcrumbs</InlineCode>
+                <InlineCode>appliedFilters	</InlineCode>
+              </td>
+              <td className="border border-slate-200 px-4 py-3">
+                <Typography variant="p2">string[]</Typography>
+              </td>
+              <td className="border border-slate-200 px-4 py-3">
+                <Typography variant="p2">Obrigatório</Typography>
               </td>
               <td className="border border-slate-200 px-4 py-3">
                 <Typography variant="p2">
-                  Array&lt;{`{ label: string; path?: string }`}&gt; ou []
+                  Lista dos valores dos filtros atualmente aplicados.
+                </Typography>
+              </td>
+            </tr>
+            <tr>
+              <td className="border border-slate-200 px-4 py-3">
+                <InlineCode>filters</InlineCode>
+              </td>
+              <td className="border border-slate-200 px-4 py-3">
+                <Typography variant="p2">
+                  <InlineCode>{`{ label: string; value: string }[]`}</InlineCode>
                 </Typography>
               </td>
               <td className="border border-slate-200 px-4 py-3">
-                <Typography variant="p2">Opcional</Typography>
+                <Typography variant="p2">Obrigatório</Typography>
               </td>
               <td className="border border-slate-200 px-4 py-3">
                 <Typography variant="p2">
-                  Caminho de navegação até a página
+                  Lista de opções de filtro disponíveis, cada uma com label e value.
+                </Typography>
+              </td>
+            </tr>
+            <tr>
+              <td className="border border-slate-200 px-4 py-3">
+                <InlineCode>handleFilter</InlineCode>
+              </td>
+              <td className="border border-slate-200 px-4 py-3">
+                <Typography variant="p2">
+                  <InlineCode>{`(filter: Filter, keepPage?: boolean) => void`}</InlineCode>
+                </Typography>
+              </td>
+              <td className="border border-slate-200 px-4 py-3">
+                <Typography variant="p2">Obrigatório</Typography>
+              </td>
+              <td className="border border-slate-200 px-4 py-3">
+                <Typography variant="p2">
+                  Função chamada ao remover um filtro. Recebe um objeto com a chave e os valores filtrados.
                 </Typography>
               </td>
             </tr>
